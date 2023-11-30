@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+       <div class="col-md-12">
+          <div *ngFor="let movie of sMovie |async">
+             <div class="card mb-4 shadow bg-dark" style="max-width: 50rem; margin: auto; color: #fff;">
+                <div class="row no-gutters">
+                   <div class="col-md-4 d-flex align-items-center">
+                      <img src="{{ movie.Poster_Link }}" class="card-img img-fluid rounded" alt="{{ movie.Series_Title }} Poster" style="max-height: 200px; margin: auto;">
+                   </div>
+                   <div class="col-md-8">
+                      <div class="card-header bg-dark text-white">
+                         {{ movie.Series_Title }}
+                      </div>
+                      <div class="card-body">
+                         <h4 class="card-title float-right">Certificate : {{ movie.Certificate }}</h4>
+                         <h5 class="card-title">Synopsis</h5>
+                         <hr>
+                         <p class="card-text">{{ movie.Overview }}</p>
+                      </div>
+                      <div class="card-footer bg-dark">
+                         <strong>Genre:</strong> {{ movie.Genre }}<br>
+                         <strong>Director:</strong> {{ movie.Director }}<br>
+                         <strong>IMDB Rating:</strong> {{ movie.IMDB_Rating }}<br>
+                         <strong>Meta Score:</strong> {{ movie.Meta_score }}<br>
+                         <strong>No of Votes:</strong> {{ movie.No_of_Votes }}<br>
+                         <strong>Gross:</strong> ${{ movie.Gross }}<br>
+                         <strong>Released Year:</strong> {{ movie.Released_Year }}<br>
+                         <strong>Runtime:</strong> {{ movie.Runtime }}
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div *ngFor="let review of reviews |async">
+               <div class="card mb-4 shadow bg-dark" style="max-width: 50rem; margin: auto; color: #fff;">
+                  <div class="row no-gutters">
+                     <div class="col-md-8">
+                        <div class="card-header bg-dark text-white">
+                           {{ review.comment }}
+                        </div>
+                        <div class="card-body">
+                           <h4 class="card-title float-right">User : {{ review.user }}</h4>
+                           <h5 class="card-title">Synopsis</h5>
+                           <hr>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Please review this business</h2>
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="user">Name</label>
+                <input type="text" id="user" name="user" class="form-control" formControlName="user" [ngClass]="{'error': isInvalid('user')}" >
+              </div>
+              <div class="form-group">
+                <label for="comment">Please leave your review below</label>
+                <textarea id="comment" rows="3" name="comment" class="form-control" formControlName="comment" [ngClass]="{'error': isInvalid('comment')}"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="star_rating">Please provide a rating (5 = best)</label>
+                <select id="star_rating" name="star_rating" class="form-control" formControlName="star_rating">
+                  <option value="1">1 star</option>
+                  <option value="2">2 stars</option>
+                  <option value="3">3 stars</option>
+                  <option value="4">4 stars</option>
+                  <option value="5">5 stars</option>
+                </select>
+              </div>
+              <span *ngIf="isIncomplete()">
+                You must complete all fields</span>
+              <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      

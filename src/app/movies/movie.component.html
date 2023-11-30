@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-columns">
+        <div class="row">
+          <div *ngFor="let movie of movie_list | async; let i = index" class="col-md-6">
+            <div class="card mb-3 shadow bg-dark" style="cursor:auto" [routerLink]="['/movie', movie._id]" style=" max-width: 60rem; margin: 10px auto; color: #fff; height: 40rem; overflow: hidden;">
+                <div class="row no-gutters">
+                  <div class="col-md-4 d-flex align-items-center">
+                    <img src="{{ movie.Poster_Link }}" class="card-img img-fluid rounded" alt="{{ movie.Series_Title }} Poster" style="max-height: 200px; margin: auto;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-header bg-dark text-white" style="position: sticky; top: 0; z-index: 1;">
+                      {{ movie.Series_Title }}
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title float-right">Certificate: {{ movie.Certificate }}</h4>
+                      <h5 class="card-title">Synopsis</h5>
+                      <hr>
+                      <p class="card-text">{{ movie.Overview }}</p>
+                    </div>
+                    <div class="card-footer bg-dark">
+                      <strong>Genre:</strong> {{ movie.Genre }}<br>
+                      <strong>Director:</strong> {{ movie.Director }}<br>
+                      <strong>IMDB Rating:</strong> {{ movie.IMDB_Rating }}<br>
+                      <strong>Meta Score:</strong> {{ movie.Meta_score }}<br>
+                      <strong>No of Votes:</strong> {{ movie.No_of_Votes }}<br>
+                      <strong>Gross:</strong> ${{ movie.Gross }}<br>
+                      <strong>Released Year:</strong> {{ movie.Released_Year }}<br>
+                      <strong>Runtime:</strong> {{ movie.Runtime }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="btn btn-primary" (click)="previousPage()">Previous</button>
+    </div>
+    <div class="col-sm-6 text-end">
+      <button class="btn btn-primary" (click)="nextPage()">Next</button>
+    </div>
+  </div>
