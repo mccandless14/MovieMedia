@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WebService } from '../web.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'sMovie',
@@ -15,7 +16,8 @@ export class SmovieComponent {
   constructor(
     private webService: WebService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {

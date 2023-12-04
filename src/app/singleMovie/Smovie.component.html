@@ -57,6 +57,7 @@
     <div class="container">
         <div class="row">
           <div class="col-sm-12">
+            <ng-container *ngIf = "authService.isAuthenticated$ | async; else loggedOut"> 
             <h2>Please review this business</h2>
             <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
@@ -81,6 +82,10 @@
                 You must complete all fields</span>
               <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
             </form>
+            </ng-container>
+            <ng-template #loggedOut>
+               <h2>Please login to review this movie</h2>
+               </ng-template>
           </div>
         </div>
       </div>

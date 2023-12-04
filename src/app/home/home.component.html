@@ -1,9 +1,121 @@
-<h1>Biz Directory</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
-  <button class="btn btn-primary" (click)="authService.logout()">Logout</button>
-</ng-container>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #121212; /* Dark mode background color */
+      color: #ffffff; /* Text color */
+    }
 
-<ng-template #loggedOut>
-  <button class="btn btn-primary" (click)="authService.loginWithRedirect()">Login</button>
-</ng-template>
+    .custom-jumbotron {
+      background-size: cover;
+      height: 400px; /* Adjust the height as needed */
+      color: #ffffff; /* Text color on the jumbotron */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <div class="row mt-4">
+      <!-- Jumbotron 1 -->
+      <div class="col-md-4">
+        <div class="jumbotron custom-jumbotron" style="background-image: url('path/to/your/image1.jpg');">
+          <div>
+            <h1 class="display-4">Movie Reviews 1</h1>
+            <p class="lead">Your tagline or additional information for Movie Reviews 1.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jumbotron 2 -->
+      <div class="col-md-4">
+        <div class="jumbotron custom-jumbotron" style="background-image: url('path/to/your/image2.jpg');">
+          <div>
+            <h1 class="display-4">Movie Reviews 2</h1>
+            <p class="lead">Your tagline or additional information for Movie Reviews 2.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jumbotron 3 -->
+      <div class="col-md-4">
+        <div class="jumbotron custom-jumbotron" style="background-image: url('path/to/your/image3.jpg');">
+          <div>
+            <h1 class="display-4">Movie Reviews 3</h1>
+            <p class="lead">Your tagline or additional information for Movie Reviews 3.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+            <h5 class="card-title">Card Title 2</h5>
+            <div class="card-body">
+              <p class="card-text">
+                Some information about the site. Duis vehicula quam vel risus cursus, in ultricies elit condimentum. Ut nec
+                justo nec nisl cursus laoreet. Aenean posuere, libero non ultrices posuere, libero libero vulputate arcu, a
+                dapibus justo justo a odio. Sed aliquam nisl felis, ut congue turpis rhoncus eu. In euismod nunc et justo
+                tempor, vel vulputate mauris tempus. Suspendisse feugiat odio sed scelerisque facilisis.
+              </p>
+            </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+            <h5 class="card-title">Card Title 2</h5>
+            <div class="card-body">
+              <p class="card-text">
+                Some information about the site. Duis vehicula quam vel risus cursus, in ultricies elit condimentum. Ut nec
+                justo nec nisl cursus laoreet. Aenean posuere, libero non ultrices posuere, libero libero vulputate arcu, a
+                dapibus justo justo a odio. Sed aliquam nisl felis, ut congue turpis rhoncus eu. In euismod nunc et justo
+                tempor, vel vulputate mauris tempus. Suspendisse feugiat odio sed scelerisque facilisis.
+              </p>
+            </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+            <h5 class="card-title">Card Title 2</h5>
+            <div class="card-body">
+              <p class="card-text">
+                Some information about the site. Duis vehicula quam vel risus cursus, in ultricies elit condimentum. Ut nec
+                justo nec nisl cursus laoreet. Aenean posuere, libero non ultrices posuere, libero libero vulputate arcu, a
+                dapibus justo justo a odio. Sed aliquam nisl felis, ut congue turpis rhoncus eu. In euismod nunc et justo
+                tempor, vel vulputate mauris tempus. Suspendisse feugiat odio sed scelerisque facilisis.
+              </p>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Bootstrap JS and Popper.js (required for Bootstrap components) -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+

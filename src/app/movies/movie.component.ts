@@ -34,5 +34,6 @@ export class MovieComponent {
             this.webService.getMovies(this.page);
         }
         
+        
     
 }

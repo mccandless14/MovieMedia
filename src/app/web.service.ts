@@ -28,5 +28,8 @@ getReviews(id: any) {
 
     return this.http.post('http://localhost:5000/api/v1.0/movies/' + this.SmovieID + '/add_review', postData); 
     };
+ deleteMovie(movieId: string) {
+    return this.http.delete('http://localhost:5000/api/v1.0/movies/' + movieId);
+      }
 }
 
