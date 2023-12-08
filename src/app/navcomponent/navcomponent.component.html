@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary">
+<div class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
     <span class="navbar-brand">Movie List</span>
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -8,6 +8,11 @@
         <a class="nav-link" routerLink='/movies'>Movies</a>
       </li>
     </ul>
+    <div class="form-inline ms-auto">
+      <button class="btn btn-outline-light" routerLink="/addMovie" [disabled]="!(authService.isAuthenticated$ | async)">
+        Add New Movie
+      </button>
+    </div>    
     <div class="form-inline ms-auto">
       <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
         <button class="btn btn-outline-light" (click)="authService.logout()">Logout</button>

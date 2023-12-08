@@ -1,43 +1,51 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div *ngFor="let movie of movie_list | async; let i = index" class="col-md-6 mb-3">
-          <div class="card shadow bg-dark" [routerLink]="['/movie', movie._id]" style="height: 500px;">
-            <div class="row no-gutters">
-              <div class="col-md-4 d-flex align-items-center justify-content-center">
-                <img src="{{ movie.Poster_Link }}" class="card-img img-fluid rounded" alt="{{ movie.Series_Title }} Poster" style="max-height: 200px;">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title text-white">{{ movie.Series_Title }}</h5>
-                  <div class="card-header bg-dark text-white">
-                    Certificate: {{ movie.Certificate }}
-                  </div>
-                  <p class="card-text text-white"><strong>Synopsis:</strong> {{ movie.Overview }}</p>
-                </div>
-                <div class="card-footer bg-dark text-white">
-                  <strong>Genre:</strong> {{ movie.Genre }}<br>
-                  <strong>Director:</strong> {{ movie.Director }}<br>
-                  <strong>IMDB Rating:</strong> {{ movie.IMDB_Rating }}<br>
-                  <strong>Meta Score:</strong> {{ movie.Meta_score }}<br>
-                  <strong>No of Votes:</strong> {{ movie.No_of_Votes }}<br>
-                  <strong>Gross:</strong> ${{ movie.Gross }}<br>
-                  <strong>Released Year:</strong> {{ movie.Released_Year }}<br>
-                  <strong>Runtime:</strong> {{ movie.Runtime }}
-                </div>
-              </div>
+<div class="row mt-5">
+  <div *ngFor="let movie of movie_list | async" class="col-md-6 mb-3 mt-5">
+    <div class="card shadow bg-dark" [routerLink]="['/movie', movie._id]">
+      <div class="row no-gutters">
+        <div class="col-md-3 text-center">
+          <img src="{{ movie.Poster_Link }}" style="max-width: 100%; height:100%; display: block; margin: 0 auto;" alt="{{ movie.Series_Title }} Poster">
+        </div>
+        <div class="col-md-7" style="text-align: center;">
+          <div class="card-body">
+            <h5 class="card-title text-white">{{ movie.Series_Title }}</h5>
+            <div class="card-header bg-dark text-white">
+              Certificate: {{ movie.Overview }}
             </div>
+          </div>
+          <div class="card-footer bg-dark text-white">
+            <table class="table table-striped table-dark" style="text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">Genre</th>
+              <th scope="col">Director</th>
+              <th scope="col">IMDB Rating:</th>
+              <th scope ="col">Certificate/th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>{{movie.Genre}}</th>
+              <th>{{movie.Director}}</th>
+              <th>{{movie.IMDB_Rating}}</th>
+              <th>{{movie.Certificate}}</th>
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mt-4">
+              <button class="btn btn-lg btn-warning" [routerLink]="['/movie', movie._id]">View More Details</button>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-6">
+</div>
+
+<div class="row mt-3">
+  <div class="col-sm-12">
+    <div class="d-flex justify-content-between">
       <button class="btn btn-primary" (click)="previousPage()">Previous</button>
-    </div>
-    <div class="col-sm-6 text-end">
       <button class="btn btn-primary" (click)="nextPage()">Next</button>
     </div>
   </div>

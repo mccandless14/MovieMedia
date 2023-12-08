@@ -1,0 +1,14 @@
+h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 100px;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 5px;
+    -webkit-text-stroke-color: black;
+}
+p{
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}

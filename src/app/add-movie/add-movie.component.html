@@ -1,0 +1,141 @@
+<div class="container mt-5" style="padding-top: 10mm;">
+    <div class="card mx-auto" style="max-width: 1000px;">
+      <div class="card-header">
+        <h2 class="text-center">Add Movie</h2>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="addMovie()" #movieForm="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="certificate">Certificate:</label>
+                <input type="text" id="certificate" name="Certificate" [(ngModel)]="movie.Certificate" class="form-control" required />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="director">Director:</label>
+                <input type="text" id="director" name="Director" [(ngModel)]="movie.Director" class="form-control" required />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="Genre" [(ngModel)]="movie.Genre" class="form-control" required />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="gross">Gross:</label>
+                <input type="text" id="gross" name="Gross" [(ngModel)]="movie.Gross" class="form-control" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="imdbRating">IMDB Rating:</label>
+                <input type="text" id="imdbRating" name="IMDB_Rating" [(ngModel)]="movie.IMDB_Rating" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="metaScore">Meta Score:</label>
+                <input type="text" id="metaScore" name="Meta_score" [(ngModel)]="movie.Meta_score" class="form-control" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="votes">No of Votes:</label>
+                <input type="text" id="votes" name="No_of_Votes" [(ngModel)]="movie.No_of_Votes" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="overview">Overview:</label>
+                <textarea id="overview" name="Overview" [(ngModel)]="movie.Overview" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="posterLink">Poster Link:</label>
+                <input type="text" id="posterLink" name="Poster_Link" [(ngModel)]="movie.Poster_Link" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="releasedYear">Released Year:</label>
+                <input type="text" id="releasedYear" name="Released_Year" [(ngModel)]="movie.Released_Year" class="form-control" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="runtime">Runtime:</label>
+                <input type="text" id="runtime" name="Runtime" [(ngModel)]="movie.Runtime" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="seriesTitle">Series Title:</label>
+                <input type="text" id="seriesTitle" name="Series_Title" [(ngModel)]="movie.Series_Title" class="form-control" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="star1">Star 1:</label>
+                <input type="text" id="star1" name="Star1" [(ngModel)]="movie.Star1" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="star2">Star 2:</label>
+                <input type="text" id="star2" name="Star2" [(ngModel)]="movie.Star2" class="form-control" />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="star3">Star 3:</label>
+                <input type="text" id="star3" name="Star3" [(ngModel)]="movie.Star3" class="form-control" />
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="star4">Star 4:</label>
+                <input type="text" id="star4" name="Star4" [(ngModel)]="movie.Star4" class="form-control" />
+              </div>
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-primary" [disabled]="!movieForm.valid">Add Movie</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

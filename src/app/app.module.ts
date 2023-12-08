@@ -10,6 +10,8 @@ import { SmovieComponent } from './singleMovie/Smovie.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 import { NavcomponentComponent } from './navcomponent/navcomponent.component';
+import { AddMovieComponent } from './add-movie/add-movie.component';
+import { FormsModule } from '@angular/forms';
 
 var routes: any = [
   {
@@ -23,15 +25,20 @@ var routes: any = [
   {
     path:'movie/:id',
     component: SmovieComponent
-  }
+  },
+  {
+    path:'addMovie',
+    component: AddMovieComponent
+  },
+    
 ];
 
 @NgModule({
  declarations: [
- AppComponent, MovieComponent, HomeComponent, SmovieComponent, NavcomponentComponent
+ AppComponent, MovieComponent, HomeComponent, SmovieComponent, NavcomponentComponent, AddMovieComponent
  ],
  imports: [
- BrowserModule, HttpClientModule,
+ BrowserModule, HttpClientModule, FormsModule,
  RouterModule.forRoot(routes), ReactiveFormsModule,
  AuthModule.forRoot({ domain: 'dev-f2qm0y6xxijwfpx8.uk.auth0.com',
                       clientId:'VRt7rkVJZTnD63ZHbGJvTQfViqxKUv0c'})
