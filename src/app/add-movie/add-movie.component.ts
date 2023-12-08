@@ -2,6 +2,10 @@
 
 import { Component } from '@angular/core';
 import { WebService } from '../web.service';
+import { Router } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-add-movie',
@@ -9,16 +13,26 @@ import { WebService } from '../web.service';
   styleUrls: ['./add-movie.component.css']
 })
 export class AddMovieComponent {
-  movie: any = {}; // Initialize an empty object to store movie data
+  movie: any = {};
+  isSuccess: boolean = false;
+  successMessage: string = '';
 
-  constructor(private webService: WebService) {}
+  constructor(private webService: WebService, private router: Router) {}
 
   addMovie() {
-    // Assuming you have a method in your WebService to make the POST request
     this.webService.addMovie(this.movie).subscribe(
       (response) => {
-        console.log('Movie added successfully:', response);
-        // You can add further logic here, such as redirecting to another page
+        this.isSuccess = true;
+        this.successMessage = 'Movie added successfully';
+        // Optionally, you can add a delay before redirecting to give the user time to see the alert
+        setTimeout(() => {
+          this.isSuccess = false;
+          // Redirect to the movies page
+          // Assuming you have a router configured in your application
+          // Make sure to import Router from '@angular/router'
+          // and inject it in the constructor
+          this.router.navigate(['/movies']);
+        }, 2000);
       },
       (error) => {
         console.error('Error adding movie:', error);

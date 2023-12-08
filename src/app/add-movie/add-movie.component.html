@@ -1,4 +1,8 @@
 <div class="container mt-5" style="padding-top: 10mm;">
+  <div class="container mt-5" style="padding-top: 10mm;">
+    <div *ngIf="isSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage }}
+    </div>  
     <div class="card mx-auto" style="max-width: 1000px;">
       <div class="card-header">
         <h2 class="text-center">Add Movie</h2>
@@ -64,7 +68,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="overview">Overview:</label>
-                <textarea id="overview" name="Overview" [(ngModel)]="movie.Overview" class="form-control"></textarea>
+                <textarea id="overview" name="Overview" [(ngModel)]="movie.Overview" class="form-control" required></textarea>
               </div>
             </div>
           </div>
@@ -73,7 +77,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="posterLink">Poster Link:</label>
-                <input type="text" id="posterLink" name="Poster_Link" [(ngModel)]="movie.Poster_Link" class="form-control" />
+                <input type="text" id="posterLink" name="Poster_Link" [(ngModel)]="movie.Poster_Link" class="form-control" required />
               </div>
             </div>
   
@@ -96,7 +100,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="seriesTitle">Series Title:</label>
-                <input type="text" id="seriesTitle" name="Series_Title" [(ngModel)]="movie.Series_Title" class="form-control" />
+                <input type="text" id="seriesTitle" name="Series_Title" [(ngModel)]="movie.Series_Title" class="form-control" required />
               </div>
             </div>
           </div>
