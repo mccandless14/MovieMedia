@@ -17,20 +17,27 @@
                             <hr>
                             <p class="card-text">{{ movie.Overview }}</p>
                         </div>
-                        <div class="card-footer bg-dark">
-                            <strong>Genre:</strong> {{ movie.Genre }}<br>
-                            <strong>Director:</strong> {{ movie.Director }}<br>
-                            <strong>IMDB Rating:</strong> {{ movie.IMDB_Rating }}<br>
-                            <strong>Meta Score:</strong> {{ movie.Meta_score }}<br>
-                            <strong>No of Votes:</strong> {{ movie.No_of_Votes }}<br>
-                            <strong>Gross:</strong> ${{ movie.Gross }}<br>
-                            <strong>Released Year:</strong> {{ movie.Released_Year }}<br>
-                            <strong>Runtime:</strong> {{ movie.Runtime }}
+                        <div class="card-footer bg-dark d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Genre:</strong> {{ movie.Genre }}<br>
+                                <strong>Director:</strong> {{ movie.Director }}<br>
+                                <strong>IMDB Rating:</strong> {{ movie.IMDB_Rating }}<br>
+                                <strong>Meta Score:</strong> {{ movie.Meta_score }}<br>
+                                <strong>No of Votes:</strong> {{ movie.No_of_Votes }}<br>
+                                <strong>Gross:</strong> ${{ movie.Gross }}<br>
+                                <strong>Released Year:</strong> {{ movie.Released_Year }}<br>
+                                <strong>Runtime:</strong> {{ movie.Runtime }}
+                            </div>
+                            <!-- Edit and Delete Buttons (visible when logged in) -->
+                            <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+                                <div class="d-flex">
+                                    <button class="btn btn-primary ml-2" (click)="editMovie(movie)">Edit Movie Details</button>
+                                    <button class="btn btn-danger ml-2" (click)="deleteMovie(movie._id)">Delete Movie</button>
+                                </div>
+                            </ng-container>
                         </div>
-                        <!-- Edit Button (visible when logged in) -->
-                        <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
-                            <button class="btn btn-primary mt-3" (click)="editMovie(movie)">Edit Movie Details</button>
-                        </ng-container>
+                        
+                      
                     </div>
                 </div>
             </div>

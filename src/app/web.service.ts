@@ -77,4 +77,13 @@ export class WebService {
         postData.append('Star4', updatedData.Star4);
         return this.http.put<any>('http://localhost:5000/api/v1.0/movies/' + movieId, postData);
     }
-}
+
+    updateReview(movieId: string, reviewId: string,  updatedData: any): Observable<any> {
+        let postData = new FormData();
+        postData.append('user', updatedData.user);
+        postData.append('comment', updatedData.comment);
+        postData.append('starRating', updatedData.starRating);
+        
+        return this.http.put<any>('http://localhost:5000/api/v1.0/movies/' + movieId + '/reviews/' + reviewId, postData);
+    }
+} 

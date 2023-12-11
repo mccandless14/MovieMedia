@@ -1,4 +1,7 @@
 <div class="row mt-5">
+  <div *ngIf="isMovieDeleted" class="alert alert-success" role="alert">
+    Movie has been successfully deleted!
+  </div>
   <div *ngFor="let movie of movie_list | async" class="col-md-6 mb-3 mt-5">
     <div class="card shadow bg-dark" [routerLink]="['/movie', movie._id]">
       <div class="row no-gutters">

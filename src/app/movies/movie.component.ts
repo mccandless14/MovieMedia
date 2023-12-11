@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebService } from '../web.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
  selector: 'movies',
@@ -10,9 +11,19 @@ export class MovieComponent {
     movie_list: any = [];
     page: number = 1;
    
-    constructor(public webService: WebService) {}
+    constructor(public webService: WebService, private route: ActivatedRoute) {}
+
+    isMovieDeleted: boolean = false;
 
     ngOnInit() {
+         // Check for the 'deleted' query parameter
+  this.route.queryParams.subscribe(params => {
+    if (params['deleted'] === 'true') {
+      this.isMovieDeleted = true;
+      // Display a Bootstrap alert or perform any other action
+      console.log('Movie has been successfully deleted');
+    }
+  });
         if (sessionStorage['page']) {
             this.page = Number(sessionStorage['page']);
             }

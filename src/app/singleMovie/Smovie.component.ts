@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { WebService } from '../web.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
+
 
 @Component({
   selector: 'sMovie',
@@ -19,7 +20,8 @@ export class SmovieComponent {
     private webService: WebService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -80,6 +82,22 @@ export class SmovieComponent {
   editMovie(movie: any) {
     this.editingMovie = movie;
     this.editForm.patchValue(movie);
+  }
+
+  deleteMovie(movieId: string): void {
+    this.webService.deleteMovie(movieId).subscribe(
+      () => {
+        console.log('Movie deleted successfully');
+        // Add any additional logic you want after successful deletion
+  
+        // Redirect to movie.component.html with a success message
+        this.router.navigate(['/movies'], { queryParams: { deleted: 'true' } });
+      },
+      (error) => {
+        console.error('Error deleting movie:', error);
+        // Handle error, e.g., show an error message
+      }
+    );
   }
 
   onSubmitEdit() {
