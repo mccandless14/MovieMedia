@@ -25,10 +25,10 @@ export class WebService {
     postReview(review: any) {
         let postData = new FormData();
         postData.append("user", review.user);
-        postData.append("text", review.comment);
-        postData.append("star_rating", review.star_rating);
+        postData.append("comment", review.comment);
+        postData.append("starRating", review.starRating);
 
-        return this.http.post('http://localhost:5000/api/v1.0/movies/' + this.SmovieID + '/add_review', postData);
+        return this.http.post('http://localhost:5000/api/v1.0/movies/' + this.SmovieID + '/reviews', postData);
     }
 
     deleteMovie(movieId: string) {
@@ -55,5 +55,26 @@ export class WebService {
       postData.append('Star4', movieData.Star4);
   
       return this.http.post<any>('http://localhost:5000/api/v1.0/movies', postData);
+    }
+
+    updateMovie(movieId: string, updatedData: any): Observable<any> {
+        let postData = new FormData();
+        postData.append('Certificate', updatedData.Certificate);
+        postData.append('Director', updatedData.Director);
+        postData.append('Genre', updatedData.Genre);
+        postData.append('Gross', updatedData.Gross);
+        postData.append('IMDB_Rating', updatedData.IMDB_Rating);
+        postData.append('Meta_score', updatedData.Meta_score);
+        postData.append('No_of_Votes', updatedData.No_of_Votes);
+        postData.append('Overview', updatedData.Overview);
+        postData.append('Poster_Link', updatedData.Poster_Link);
+        postData.append('Released_Year', updatedData.Released_Year);
+        postData.append('Runtime', updatedData.Runtime);
+        postData.append('Series_Title', updatedData.Series_Title);
+        postData.append('Star1', updatedData.Star1);
+        postData.append('Star2', updatedData.Star2);
+        postData.append('Star3', updatedData.Star3);
+        postData.append('Star4', updatedData.Star4);
+        return this.http.put<any>('http://localhost:5000/api/v1.0/movies/' + movieId, postData);
     }
 }
