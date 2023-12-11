@@ -46,23 +46,23 @@
                 <div class="card mb-3 shadow mt-3" style="max-width: 50rem; margin: auto; color:black">
                     <div class="card-body">
                         <h2>Edit Movie Details</h2>
-                        <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+                        <form [formGroup]="editForm" #editmovieform="ngForm" (ngSubmit)="onSubmitEdit()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <!-- Certificate -->
                                     <div class="form-group">
                                         <label for="Certificate">Certificate</label>
-                                        <input type="text" id="Certificate" name="Certificate" class="form-control" formControlName="Certificate" [value]="editingMovie?.Certificate">
+                                        <input type="text" id="Certificate" name="Certificate" class="form-control" formControlName="Certificate" required [value]="editingMovie?.Certificate">
                                     </div>
                                     <!-- Director -->
                                     <div class="form-group">
                                         <label for="Director">Director</label>
-                                        <input type="text" id="Director" name="Director" class="form-control" formControlName="Director" [value]="editingMovie?.Director">
+                                        <input type="text" id="Director" name="Director" class="form-control" formControlName="Director" required [value]="editingMovie?.Director">
                                     </div>
                                     <!-- Genre -->
                                     <div class="form-group">
                                         <label for="Genre">Genre</label>
-                                        <input type="text" id="Genre" name="Genre" class="form-control" formControlName="Genre" [value]="editingMovie?.Genre">
+                                        <input type="text" id="Genre" name="Genre" class="form-control" formControlName="Genre" required [value]="editingMovie?.Genre">
                                     </div>
                                     <!-- Gross -->
                                     <div class="form-group">
@@ -89,31 +89,31 @@
                                     <!-- Overview -->
                                     <div class="form-group">
                                         <label for="Overview">Overview</label>
-                                        <textarea id="Overview" rows="3" name="Overview" class="form-control" formControlName="Overview">{{ editingMovie?.Overview }}</textarea>
+                                        <textarea id="Overview" rows="3" name="Overview" class="form-control" formControlName="Overview" required>{{ editingMovie?.Overview }}</textarea>
                                     </div>
                                     <!-- Poster Link -->
                                     <div class="form-group">
                                         <label for="Poster_Link">Poster Link</label>
-                                        <input type="text" id="Poster_Link" name="Poster_Link" class="form-control" formControlName="Poster_Link" [value]="editingMovie?.Poster_Link">
+                                        <input type="text" id="Poster_Link" name="Poster_Link" class="form-control" formControlName="Poster_Link" required [value]="editingMovie?.Poster_Link">
                                     </div>
                                     <!-- Released Year -->
                                     <div class="form-group">
                                         <label for="Released_Year">Released Year</label>
-                                        <input type="text" id="Released_Year" name="Released_Year" class="form-control" formControlName="Released_Year" [value]="editingMovie?.Released_Year">
+                                        <input type="text" id="Released_Year" name="Released_Year" class="form-control" formControlName="Released_Year" required [value]="editingMovie?.Released_Year">
                                     </div>
                                     <!-- Runtime -->
                                     <div class="form-group">
                                         <label for="Runtime">Runtime</label>
-                                        <input type="text" id="Runtime" name="Runtime" class="form-control" formControlName="Runtime" [value]="editingMovie?.Runtime">
+                                        <input type="text" id="Runtime" name="Runtime" class="form-control" formControlName="Runtime" required [value]="editingMovie?.Runtime">
                                     </div>
                                     <!-- Series Title -->
                                     <div class="form-group">
                                         <label for="Series_Title">Series Title</label>
-                                        <input type="text" id="Series_Title" name="Series_Title" class="form-control" formControlName="Series_Title" [value]="editingMovie?.Series_Title">
+                                        <input type="text" id="Series_Title" name="Series_Title" class="form-control" formControlName="Series_Title" required [value]="editingMovie?.Series_Title">
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" [disabled]="!editmovieform.valid" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -148,16 +148,16 @@
                 <div class="card mb-3 shadow mt-3" style="max-width: 50rem; margin: auto; color: black">
                   <div class="card-body">
                     <h2>Edit Review Details</h2>
-                    <form [formGroup]="editReviewForm" (ngSubmit)="onSubmitEdit()">
+                    <form [formGroup]="editReviewForm" #editReviewDetails="ngForm" (ngSubmit)="onSubmitEdit()">
                       <div class="form-group">
                         <label for="comment">Comment</label>
-                        <input type="text" id="comment" name="comment" class="form-control" formControlName="comment"
+                        <input type="text" id="comment" name="comment" class="form-control" formControlName="comment" required
                           [value]="editingReview?.comment">
                       </div>
                       <div class="form-group">
                         <label for="starRating">Star Rating</label>
                         <select id="starRating" name="starRating" class="form-control" formControlName="starRating"
-                          [value]="editingReview?.starRating">
+                          [value]="editingReview?.starRating" required>
                           <option value="1">1 star</option>
                           <option value="2">2 stars</option>
                           <option value="3">3 stars</option>
@@ -170,7 +170,7 @@
                           <option value="10">10 stars</option>
                         </select>
                       </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" [disabled]="!editReviewDetails" class="btn btn-primary">Submit</button>
                     </form>
                   </div>
                 </div>
