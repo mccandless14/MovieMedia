@@ -78,9 +78,12 @@ export class WebService {
         return this.http.put<any>('http://localhost:5000/api/v1.0/movies/' + movieId, postData);
     }
 
+    deleteReview(movieId: string, reviewId: string) {
+        return this.http.delete(`http://localhost:5000/api/v1.0/movies/${movieId}/reviews/${reviewId}`);
+    }
+
     updateReview(movieId: string, reviewId: string,  updatedData: any): Observable<any> {
         let postData = new FormData();
-        postData.append('user', updatedData.user);
         postData.append('comment', updatedData.comment);
         postData.append('starRating', updatedData.starRating);
         

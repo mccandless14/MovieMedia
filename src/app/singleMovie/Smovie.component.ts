@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
 
-
 @Component({
   selector: 'sMovie',
   templateUrl: './Smovie.component.html',
@@ -15,6 +14,7 @@ export class SmovieComponent {
   reviewForm: any;
   editForm: any;
   editingMovie: any;
+  editingReview: any; // New property to store the currently editing review
 
   constructor(
     private webService: WebService,
@@ -32,24 +32,9 @@ export class SmovieComponent {
     });
 
     this.editForm = this.formBuilder.group({
-      Certificate: [''],
-      Director: [''],
-      Genre: [''],
-      Gross: [''],
-      IMDB_Rating: [null],
-      Meta_score: [null],
-      No_of_Votes: [null],
-      Overview: [''],
-      Poster_Link: [''],
-      Released_Year: [null],
-      Runtime: [''],
-      Series_Title: [''],
-      Star1: [''],
-      Star2: [''],
-      Star3: [''],
-      Star4: [''],
+      comment: [''],
+      starRating: [null],
     });
-    
 
     this.sMovie = this.webService.getSmovie(this.route.snapshot.params['id']);
     this.reviews = this.webService.getReviews(this.route.snapshot.params['id']);
@@ -60,7 +45,6 @@ export class SmovieComponent {
       this.reviewForm.reset();
       this.reviews = this.webService.getReviews(this.route.snapshot.params['id']);
     });
-    this.reviewForm.reset();
   }
 
   isInvalid(control: any) {
@@ -82,34 +66,56 @@ export class SmovieComponent {
   editMovie(movie: any) {
     this.editingMovie = movie;
     this.editForm.patchValue(movie);
+    this.editingReview = null; // Reset editingReview when editing a movie
   }
 
   deleteMovie(movieId: string): void {
     this.webService.deleteMovie(movieId).subscribe(
       () => {
         console.log('Movie deleted successfully');
-        // Add any additional logic you want after successful deletion
-  
-        // Redirect to movie.component.html with a success message
         this.router.navigate(['/movies'], { queryParams: { deleted: 'true' } });
       },
       (error) => {
         console.error('Error deleting movie:', error);
-        // Handle error, e.g., show an error message
+      }
+    );
+  }
+
+  editReview(review: any) {
+    this.editingReview = review;
+    this.editForm.patchValue(review);
+    this.editingMovie = null; // Reset editingMovie when editing a review
+  }
+
+  deleteReview(reviewId: string): void {
+    this.webService.deleteReview(this.route.snapshot.params['id'], reviewId).subscribe(
+      () => {
+        console.log('Review deleted successfully');
+        this.reviews = this.webService.getReviews(this.route.snapshot.params['id']);
+      },
+      (error) => {
+        console.error('Error deleting review:', error);
       }
     );
   }
 
   onSubmitEdit() {
-    const editedMovieDetails = this.editForm.value;
-    // Assuming you have an updateMovie method in your WebService
-    this.webService.updateMovie(this.editingMovie._id, editedMovieDetails).subscribe(() => {
-      // Additional logic after successful movie update
-      console.log('Movie details updated successfully');
-      // Optionally, reset the form and clear the editingMovie property
-      this.editForm.reset();
-      this.editingMovie = null;
-    });
+    if (this.editingMovie) {
+      const editedMovieDetails = this.editForm.value;
+      this.webService.updateMovie(this.editingMovie._id, editedMovieDetails).subscribe(() => {
+        console.log('Movie details updated successfully');
+        this.editForm.reset();
+        this.editingMovie = null;
+      });
+    } else if (this.editingReview) {
+      const editedReviewDetails = this.editForm.value;
+      this.webService.updateReview(this.route.snapshot.params['id'], this.editingReview.id, editedReviewDetails).subscribe(() => {
+        console.log('Review details updated successfully');
+        this.editForm.reset();
+        this.editingReview = null;
+        this.reviews = this.webService.getReviews(this.route.snapshot.params['id']);
+      });
+    }
   }
 
   sMovie: any = [];

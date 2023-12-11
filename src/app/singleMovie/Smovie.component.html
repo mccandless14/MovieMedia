@@ -122,56 +122,99 @@
     </div>
 
     <!-- Reviews Column -->
-    <div class="col-md-4">
-        <div *ngFor="let review of reviews |async">
-            <div class="card mb-4 shadow bg-dark" style="max-width: 50rem; margin: auto; color: #fff;">
-                <div class="row no-gutters">
-                    <div class="col-md-12">
-                        <div class="card-header bg-dark text-white">
-                            Username : {{ review.user }}
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title float-right">User : {{ review.comment }}</h4>
-                            <h5 class="card-title">Star Rating : {{review.starRating}}</h5>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
+<div class="col-md-4">
+    <div *ngFor="let review of reviews | async">
+      <div class="card mb-4 shadow bg-dark" style="max-width: 50rem; margin: auto; color: #fff;">
+        <div class="row no-gutters">
+          <div class="col-md-12">
+            <div class="card-header bg-dark text-white">
+              Username : {{ review.user }}
             </div>
-        </div>
-
-        <!-- Add New Review Card -->
-        <div class="card mb-3 shadow bg-dark" style="max-width: 30rem; margin: auto; color: #fff;">
             <div class="card-body">
-                <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
-                    <h2>Please review this business</h2>
-                    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label for="user">Name</label>
-                            <input type="text" id="user" name="user" class="form-control" formControlName="user" [ngClass]="{'error': isInvalid('user')}">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Please leave your review below</label>
-                            <textarea id="comment" rows="3" name="comment" class="form-control" formControlName="comment" [ngClass]="{'error': isInvalid('comment')}"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="starRating">Please provide a rating (5 = best)</label>
-                            <select id="starRating" name="starRating" class="form-control" formControlName="starRating">
-                                <option value="1">1 star</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars</option>
-                            </select>
-                        </div>
-                        <span *ngIf="isIncomplete()">You must complete all fields</span>
-                        <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </ng-container>
-                <ng-template #loggedOut>
-                    <h2>Please login to review this movie</h2>
-                </ng-template>
+              <h4 class="card-title float-right">User : {{ review.comment }}</h4>
+              <h5 class="card-title">Star Rating : {{ review.starRating }}</h5>
+              <hr>
+              <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+                <div class="d-flex">
+                  <button class="btn btn-primary ml-2" (click)="editReview(review)">Edit Review</button>
+                  <button class="btn btn-danger ml-2" (click)="deleteReview(review.id)">Delete Review</button>
+                </div>
+              </ng-container>
             </div>
+            <!-- Edit and Delete Buttons for Reviews -->
+            <div class="card-footer bg-dark d-flex justify-content-between align-items-center">
+              <!-- Edit Review Details Form (hidden by default) -->
+              <div *ngIf="editingReview === review">
+                <div class="card mb-3 shadow mt-3" style="max-width: 50rem; margin: auto; color: black">
+                  <div class="card-body">
+                    <h2>Edit Review Details</h2>
+                    <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+                      <div class="form-group">
+                        <label for="comment">Comment</label>
+                        <input type="text" id="comment" name="comment" class="form-control" formControlName="comment"
+                          [value]="editingReview?.comment">
+                      </div>
+                      <div class="form-group">
+                        <label for="starRating">Star Rating</label>
+                        <select id="starRating" name="starRating" class="form-control" formControlName="starRating"
+                          [value]="editingReview?.starRating">
+                          <option value="1">1 star</option>
+                          <option value="2">2 stars</option>
+                          <option value="3">3 stars</option>
+                          <option value="4">4 stars</option>
+                          <option value="5">5 stars</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  
+    <!-- Add New Review Card -->
+    <div class="card mb-3 shadow bg-dark" style="max-width: 30rem; margin: auto; color: #fff;">
+      <div class="card-body">
+        <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+          <h2>Please review this business</h2>
+          <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="user">Name</label>
+              <input type="text" id="user" name="user" class="form-control" formControlName="user"
+                [ngClass]="{'error': isInvalid('user')}">
+            </div>
+            <div class="form-group">
+              <label for="comment">Please leave your review below</label>
+              <textarea id="comment" rows="3" name="comment" class="form-control" formControlName="comment"
+                [ngClass]="{'error': isInvalid('comment')}"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="starRating">Please provide a rating (10 = best)</label>
+              <select id="starRating" name="starRating" class="form-control" formControlName="starRating">
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+                <option value="1">6 star</option>
+                <option value="2">7 stars</option>
+                <option value="3">8 stars</option>
+                <option value="4">9 stars</option>
+                <option value="5">10 stars</option>
+              </select>
+            </div>
+            <span *ngIf="isIncomplete()">You must complete all fields</span>
+            <button *ngIf="!isIncomplete()" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </ng-container>
+        <ng-template #loggedOut>
+          <h2>Login to Access Priveledges</h2>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  
