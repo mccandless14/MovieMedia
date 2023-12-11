@@ -148,7 +148,7 @@
                 <div class="card mb-3 shadow mt-3" style="max-width: 50rem; margin: auto; color: black">
                   <div class="card-body">
                     <h2>Edit Review Details</h2>
-                    <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+                    <form [formGroup]="editReviewForm" (ngSubmit)="onSubmitEdit()">
                       <div class="form-group">
                         <label for="comment">Comment</label>
                         <input type="text" id="comment" name="comment" class="form-control" formControlName="comment"
@@ -163,11 +163,11 @@
                           <option value="3">3 stars</option>
                           <option value="4">4 stars</option>
                           <option value="5">5 stars</option>
-                          <option value="1">6 star</option>
-                          <option value="2">7 stars</option>
-                          <option value="3">8 stars</option>
-                          <option value="4">9 stars</option>
-                          <option value="5">10 stars</option>
+                          <option value="6">6 star</option>
+                          <option value="7">7 stars</option>
+                          <option value="8">8 stars</option>
+                          <option value="9">9 stars</option>
+                          <option value="10">10 stars</option>
                         </select>
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>
@@ -205,11 +205,11 @@
                 <option value="3">3 stars</option>
                 <option value="4">4 stars</option>
                 <option value="5">5 stars</option>
-                <option value="1">6 star</option>
-                <option value="2">7 stars</option>
-                <option value="3">8 stars</option>
-                <option value="4">9 stars</option>
-                <option value="5">10 stars</option>
+                <option value="6">6 star</option>
+                <option value="7">7 stars</option>
+                <option value="8">8 stars</option>
+                <option value="9">9 stars</option>
+                <option value="10">10 stars</option>
               </select>
             </div>
             <span *ngIf="isIncomplete()">You must complete all fields</span>

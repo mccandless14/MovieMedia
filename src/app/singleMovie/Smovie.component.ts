@@ -15,6 +15,7 @@ export class SmovieComponent {
   editForm: any;
   editingMovie: any;
   editingReview: any; // New property to store the currently editing review
+  editReviewForm: any;
 
   constructor(
     private webService: WebService,
@@ -32,8 +33,28 @@ export class SmovieComponent {
     });
 
     this.editForm = this.formBuilder.group({
+      Certificate: [''],
+      Director: [''],
+      Genre: [''],
+      Gross: [''],
+      IMDB_Rating: [null],
+      Meta_score: [null],
+      No_of_Votes: [null],
+      Overview: [''],
+      Poster_Link: [''],
+      Released_Year: [null],
+      Runtime: [''],
+      Series_Title: [''],
+      Star1: [''],
+      Star2: [''],
+      Star3: [''],
+      Star4: [''],
+    });
+
+    this.editReviewForm = this.formBuilder.group({
       comment: [''],
-      starRating: [null],
+      starRating: [''],
+      
     });
 
     this.sMovie = this.webService.getSmovie(this.route.snapshot.params['id']);
@@ -83,7 +104,7 @@ export class SmovieComponent {
 
   editReview(review: any) {
     this.editingReview = review;
-    this.editForm.patchValue(review);
+    this.editReviewForm.patchValue(review);
     this.editingMovie = null; // Reset editingMovie when editing a review
   }
 
@@ -108,7 +129,7 @@ export class SmovieComponent {
         this.editingMovie = null;
       });
     } else if (this.editingReview) {
-      const editedReviewDetails = this.editForm.value;
+      const editedReviewDetails = this.editReviewForm.value;
       this.webService.updateReview(this.route.snapshot.params['id'], this.editingReview.id, editedReviewDetails).subscribe(() => {
         console.log('Review details updated successfully');
         this.editForm.reset();
