@@ -20,7 +20,6 @@ export class MovieComponent {
   this.route.queryParams.subscribe(params => {
     if (params['deleted'] === 'true') {
       this.isMovieDeleted = true;
-      // Display a Bootstrap alert or perform any other action
       console.log('Movie has been successfully deleted');
     }
   });
